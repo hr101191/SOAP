@@ -15,41 +15,34 @@ public class SoapclientApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SoapclientApplication.class, args);
-
-		//1) init the request
-		Add add = new Add();
-		add.setIntA(66);
-		add.setIntB(99);
-		
-		//2) marshall the request object to xml string
-		Map<String, String> objectMap = JaxbUtil.jaxbObjectToXML(add, Add.class);
-		if (!objectMap.get("xml").isEmpty()) {
-			System.out.println(objectMap.get("xml"));
-		}			
-		else {
-			System.out.println("error transforming object into xml String, exiting the program");
-			System.out.println("error message: " + objectMap.get("error"));
-			System.exit(1);
-		}
-				
-		//3) call web service with the xml string, map it to AddResponse class if response code is 200
-		AddResponse addResponse = new AddResponse();
-		Map<String, String> responseMap = httpUtil.callSoapService(objectMap.get("xml"), "http://www.dneonline.com/calculator.asmx");
-		if (Integer.parseInt(responseMap.get("code")) == 200) {
-			try {
-				addResponse = (AddResponse) JaxbUtil.xmlToJaxbObject(AddResponse.class, AddResponse.class.getSimpleName(), responseMap.get("xml"));
-			}catch(Exception ex){
-				System.out.println("error transforming object into xml String, exiting the program");
+		try {
+			//1) init the request
+			Add add = new Add();
+			add.setIntA(66);
+			add.setIntB(99);
+			
+			//2) marshall the request object to xml string
+			String xmlString = JaxbUtil.jaxbObjectToXmlString(add, Add.class);
+			
+			//3) call web service with the xml string, map it to AddResponse class object if response code is 200			
+			Map<String, String> responseMap = httpUtil.callSoapService(xmlString, "http://www.dneonline.com/calculator.asmx");
+			AddResponse addResponse = new AddResponse();
+			if (Integer.parseInt(responseMap.get("code")) == 200) {			
+				addResponse = (AddResponse) JaxbUtil.xmlStringToJaxbObject(AddResponse.class, AddResponse.class.getSimpleName(), responseMap.get("responseBody"));
+			}else {
+				System.out.println("Unable to map to response object");
+				System.out.println(responseMap.get("responseBody"));
+				System.out.println("Existing the program!!");
 				System.exit(1);
 			}
-		}			
-		else {
-			System.out.println("error transforming object into xml String, exiting the program");
-			System.out.println("error message: " + responseMap.get("error"));
-			System.exit(1);
+			
+			//4) Verify that we are able to get the AddResult from AddResponse object
+			System.out.println("Verifying output in response object:");
+			System.out.println("Result is: " + addResponse.getAddResult());
+		}catch(Exception ex) {
+			ex.printStackTrace();
 		}
 		
-		//4) Verify that we are able to get the AddResult from AddResponse object
-		System.out.println("Result is: " + addResponse.getAddResult());
+		
 	}
 }
