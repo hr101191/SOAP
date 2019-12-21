@@ -11,7 +11,7 @@
 .yardopts
 bin
 build
-target
+target/
 out
 test-output
 Scratch.java
