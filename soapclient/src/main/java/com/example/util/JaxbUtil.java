@@ -15,6 +15,7 @@ import javax.xml.soap.MessageFactory;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.transform.stream.StreamSource;
@@ -23,12 +24,12 @@ import org.w3c.dom.Document;
 
 public class JaxbUtil {
     @SuppressWarnings("rawtypes")
-	public static String jaxbObjectToXmlString(Object object, Class clazz) throws ParserConfigurationException, JAXBException, SOAPException, IOException
+	public static String jaxbElementToXmlString(JAXBElement jaxbElement, Class clazz) throws ParserConfigurationException, JAXBException, SOAPException, IOException
     {   	
         //1) Marshal to object
         Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
         Marshaller marshaller = JAXBContext.newInstance(clazz).createMarshaller();
-        marshaller.marshal(object, document);
+        marshaller.marshal(jaxbElement, document);
         
         //2) Create Soap Message
         SOAPMessage soapMessage = MessageFactory.newInstance().createMessage();          
@@ -44,23 +45,24 @@ public class JaxbUtil {
     
     //Note: String className is generated from wsdl, which will help to strip the required section from the SOAP response to unmarshall back to the generated model
     @SuppressWarnings({ "rawtypes", "unchecked" })
-	public static <T> Object xmlStringToJaxbObject(Class clazz, String className, String xml) throws XMLStreamException, JAXBException {
+	public static <T> Object xmlStringToJaxbObject(Class clazz, String xml) throws XMLStreamException, JAXBException {
     	
     	//1) Read the response XML
-        XMLInputFactory xif = XMLInputFactory.newFactory();
+        XMLInputFactory xmlInputFactory = XMLInputFactory.newFactory();
         StreamSource xmlStreamSource = new StreamSource(new StringReader(xml));
-        XMLStreamReader xsr = xif.createXMLStreamReader(xmlStreamSource);
+        XMLStreamReader xmlStreamReader = xmlInputFactory.createXMLStreamReader(xmlStreamSource);
         
         //2) Skip to the XML tag by matching with the generated response class name
-        xsr.nextTag();
-        while(!xsr.getLocalName().equals(className)) {
-            xsr.nextTag();
+        while(xmlStreamReader.hasNext()) { //do not use xmlStreamReader.nextTag() as it will break if XMLStreamConstans is a XML Object
+        	if(xmlStreamReader.next() == XMLStreamConstants.START_ELEMENT && xmlStreamReader.getLocalName().equals(clazz.getSimpleName())) {
+        		break; //Strip only the portion which matches the response class
+        	}
         }
         
         //3) Unmarshall to response object
         JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        JAXBElement<T> root = jaxbUnmarshaller.unmarshal(xsr, clazz);
+        JAXBElement<T> root = jaxbUnmarshaller.unmarshal(xmlStreamReader, clazz);
         Object object = root.getValue();
         
         return object;
