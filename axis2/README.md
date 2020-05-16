@@ -16,9 +16,8 @@ down into steps
 Generating code from wsdl 
 
 ##### Prerequisites
-1. Download the binary distribution of Axis2 as per the instructions [on the Axis2
-    website](https://axis.apache.org/axis2/java/core/download.cgi).
-2. Create a wsdl, this demo will use the wsdl from http://www.dneonline.com/calculator.asmx?wsdl
+1. Download the binary distribution of Axis2 as per the instructions [on the Axis2 website](https://axis.apache.org/axis2/java/core/download.cgi).
+2. Create a wsdl, this demo will use the wsdl from http://www.dneonline.com/calculator.asmx?wsdl \
    *Copy the content and save as calculator.wsdl
 ##### Generate java code from wsdl
 Java code can be generated using wsdl2java.bat or wsdl2java.sh from the axis2\bin folder
