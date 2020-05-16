@@ -27,7 +27,7 @@ Java code can be generated using wsdl2java.bat or wsdl2java.sh from the axis2\bi
 
 To customize the package name, make the following changes in the wsdl
 
-1. Wsdl definitions
+1. Wsdl definitions\
 <wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
 xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" 
 xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
