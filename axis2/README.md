@@ -26,9 +26,9 @@ Command (The {placeholders} shown need to be replaced with actual values):
 ```
 wsdl2java.bat -uri {full_path_of_wsdl_file} -ss -sd -o {output_path_of_generated_java_code}
 ```
-![Alt text](README_IMG/wsdl2java_command.PNG?raw=true "wsdl2java_command")\
+![Alt text](README_IMG/wsdl2java_command.PNG?raw=true "wsdl2java_command")
 
-#####Customizing Generated Package Name
+##### Customizing Generated Package Name
 
 To customize the package name, make the following changes in the wsdl
 
