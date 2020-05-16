@@ -15,12 +15,18 @@ down into steps
 
 Generating code from wsdl 
 
-##### Prerequisites
+###Prerequisites
 1. Download the binary distribution of Axis2 as per the instructions [on the Axis2 website](https://axis.apache.org/axis2/java/core/download.cgi).
 2. Create a wsdl. This demo will use the wsdl from http://www.dneonline.com/calculator.asmx?wsdl with some modifications\
    *Copy the content and save as calculator.wsdl
-##### Generate java code from wsdl
+### Generate java code from wsdl
 Java code can be generated using wsdl2java.bat or wsdl2java.sh from the axis2\bin folder
+
+Command (The {placeholders} shown need to be replaced with actual values): 
+```
+wsdl2java.bat -uri {full_path_of_wsdl_file} -ss -sd -o {output_path_of_generated_java_code}
+```
+![Alt text](README_IMG/wsdl2java_command.PNG?raw=true "wsdl2java_command")\
 
 #####Customizing Generated Package Name
 
@@ -50,12 +56,8 @@ The above setting will result in the packages generated to be:
 com.hurui.calculator
 ```
 
-Command (The {placeholders} shown need to be replaced with actual values): 
-```
-wsdl2java.bat -uri {full_path_of_wsdl_file} -ss -sd -o {output_path_of_generated_java_code}
-```
-![Alt text](README_IMG/wsdl2java_command.PNG?raw=true "Title")\
-!(README_IMG/wsdl2java_command.PNG?raw=true)\
+
+
 *Note: Customizing package name of the output wsdl is not discussed in this demo. 
        You can change it by modifying the namespace in the wsdl. 
 	   https://www.w3.org/TR/REC-xml-names/
