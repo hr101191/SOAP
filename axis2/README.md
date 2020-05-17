@@ -91,3 +91,6 @@ This section will describe the steps to generate java code from the wsdl and hos
  
  ![Alt text](README_IMG/generated_files.PNG?raw=true "generated_files")
  
+ 3. Copy everything in output/resources to your src/main/resource with the following structure:
+![Alt text](README_IMG/service_xml_folder_structure.PNG?raw=true "service_xml_folder_structure")
+The service.xml will contain the classpaths which are called by Axis2 Servlet via reflection

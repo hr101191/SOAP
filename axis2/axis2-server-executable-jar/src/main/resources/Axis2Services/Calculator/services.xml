@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This file was auto-generated from WSDL -->
+<!-- by the Apache Axis2 version: 1.7.9  Built on : Nov 16, 2018 (12:05:37 GMT) -->
+<serviceGroup>
+    <service name="Calculator">
+        <messageReceivers>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="com.hurui.calculatorservice.CalculatorMessageReceiverInOut"/>
+        </messageReceivers>
+        <parameter name="ServiceClass">com.hurui.calculatorservice.CalculatorSkeleton</parameter>
+        <parameter name="useOriginalwsdl">true</parameter>
+        <parameter name="modifyUserWSDLPortAddress">true</parameter>
+        <operation name="Multiply" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://CalculatorService.hurui.com/">
+            <actionMapping>http://tempuri.org/Multiply</actionMapping>
+            <outputActionMapping>http://CalculatorService.hurui.com/CalculatorSoap/MultiplyResponse</outputActionMapping>
+        </operation>
+        <operation name="Divide" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://CalculatorService.hurui.com/">
+            <actionMapping>http://tempuri.org/Divide</actionMapping>
+            <outputActionMapping>http://CalculatorService.hurui.com/CalculatorSoap/DivideResponse</outputActionMapping>
+        </operation>
+        <operation name="Add" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://CalculatorService.hurui.com/">
+            <actionMapping>http://tempuri.org/Add</actionMapping>
+            <outputActionMapping>http://CalculatorService.hurui.com/CalculatorSoap/AddResponse</outputActionMapping>
+        </operation>
+        <operation name="Subtract" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://CalculatorService.hurui.com/">
+            <actionMapping>http://tempuri.org/Subtract</actionMapping>
+            <outputActionMapping>http://CalculatorService.hurui.com/CalculatorSoap/SubtractResponse</outputActionMapping>
+        </operation>
+    </service>
+</serviceGroup>
