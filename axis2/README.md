@@ -81,6 +81,7 @@ This section will describe the steps to generate java code from the wsdl and hos
 2. Create a new Spring Boot project, copy everything inside your output/src to src/main/java
  * Copy from:
 ```
+![Alt text](README_IMG/output_to_copy.PNG?raw=true "output_to_copy")
 ```
  * Copy to:
 ```
