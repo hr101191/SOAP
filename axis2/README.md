@@ -130,3 +130,7 @@ The service.xml contains the classpaths which are called by Axis2 Servlet via re
 this service.xml is unique for each wsdl. On startup, the service.xml will be loaded by Axis2 Servlet.
 
 4. Start coding!
+
+## Test
+As you can see from the screenshot below, SOAP1.1 request can be made without SOAPAction header
+![Alt text](README_IMG/test1.PNG?raw=true "test1")
