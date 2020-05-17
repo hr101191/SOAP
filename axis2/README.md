@@ -4,8 +4,6 @@ This folder contains project templates on how to host SOAP services utilizing Ap
 ## Description
 1) how to host axis2 servlet in an executable jar
 
-Note that the
-
 ## Code Walkthrough
 
 TLDR: For those with prior experience with Axis2, the steps on how to create a server can be broken 
@@ -15,7 +13,7 @@ down into steps
 
 Generating code from wsdl 
 
-###Prerequisites
+### Prerequisites
 1. Download the binary distribution of Axis2 as per the instructions [on the Axis2 website](https://axis.apache.org/axis2/java/core/download.cgi).
 2. Create a wsdl. This demo will use the wsdl from http://www.dneonline.com/calculator.asmx?wsdl with some modifications\
    *Copy the content and save as calculator.wsdl
