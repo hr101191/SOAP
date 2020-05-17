@@ -64,7 +64,7 @@ com.hurui.calculatorservice
 ```
 
 #### Customizing URL Pattern
-Modify the following in the wsdl:\
+Modify the following in the wsdl:
 ```
 <wsdl:service name="CalculatorService">
 ```
