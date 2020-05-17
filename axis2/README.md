@@ -28,7 +28,7 @@ wsdl2java.bat -uri {full_path_of_wsdl_file} -ss -sd -o {output_path_of_generated
 ```
 ![Alt text](README_IMG/wsdl2java_command.PNG?raw=true "wsdl2java_command")
 
-##### Customizing Generated Package Name
+#### Customizing Generated Package Name
 
 To customize the package name, make the following changes in the wsdl
 
@@ -56,8 +56,19 @@ The above setting will result in the packages generated to be:
 com.hurui.calculator
 ```
 
+This demo will make use of the targetNamespace to customize package name but it actually has other uses.\
+You can read more about the purpose of targetNamespace at: https://www.w3.org/TR/REC-xml-names/
 
+#### SOAPAction
+SOAPAction is a mandatory header for SOAP1.1 messages. If your wsdl supports SOAP1.1, you must set it in your request header.\
+This demo will show you how you can bypass this restriction programmatically.
 
-*Note: Customizing package name of the output wsdl is not discussed in this demo. 
-       You can change it by modifying the namespace in the wsdl. 
-	   https://www.w3.org/TR/REC-xml-names/
+Here's the workaround... REST is enabled by default for Axis2 and you simply have change the content-type to anything \
+other than text/xml. Full ocumentation [on the Axis2 website](http://axis.apache.org/axis2/java/core/docs/rest-ws.html#rest_with_get).
+```
+If REST is enabled, the Axis2 server will act as both a REST endpoint and a SOAP endpoint.
+When a message is received, if the content type is text/xml and if the SOAPAction Header is missing, 
+then the message is treated as a RESTful Message, if not it is treated as a usual SOAP Message. 
+```
+
+As some client libraies will not have full control on setting the content type, we will override the content-type when we detect that it's text/xml
