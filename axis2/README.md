@@ -73,8 +73,8 @@ then the message is treated as a RESTful Message, if not it is treated as a usua
 
 As some client libraies will not have full control on setting the content type, we will override the content-type when we detect that it's text/xml
 
-###Implementation
+### Implementation
 This section will describe the steps to generate java code from the wsdl and host the servioes in an executable jar.
 
-1. Follow the [steps](#Generate java code from wsdl) above to generate java code from wsdl, you should see the following being generated:
+1. Follow the [steps](#Generate-java-code-from-wsdl) above to generate java code from wsdl, you should see the following being generated:\
 ![Alt text](README_IMG/wsdl2java_output.PNG?raw=true "wsdl2java_output")
