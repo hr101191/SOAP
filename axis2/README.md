@@ -78,3 +78,8 @@ This section will describe the steps to generate java code from the wsdl and hos
 
 1. Follow the [steps](#Generate-java-code-from-wsdl) above to generate java code from wsdl, you should see the following being generated:\
 ![Alt text](README_IMG/wsdl2java_output.PNG?raw=true "wsdl2java_output")
+2. Create a new Spring Boot project, copy everything inside your output/src to src/main/java
+-Copy from:
+```
+```
+-Copy to:
