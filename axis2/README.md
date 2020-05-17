@@ -66,6 +66,13 @@ Modify the following in the wsdl:
 ```
 <wsdl:service name="CalculatorService">
 ```
+Service Url:
+```
+/server-prefix/axis2-prefix/CalculatorService
+
+e.g. standard localhost env url: http://localhost:8080/services/CalculatorService
+```
+
 This demo will make use of the targetNamespace to customize package name but it actually has other uses.\
 You can read more about the purpose of targetNamespace at: https://www.w3.org/TR/REC-xml-names/
 
