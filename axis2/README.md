@@ -61,7 +61,7 @@ You can read more about the purpose of targetNamespace at: https://www.w3.org/TR
 
 #### SOAPAction
 SOAPAction is a mandatory header for SOAP1.1 messages. If your wsdl supports SOAP1.1, you must set it in your request header.\
-This demo will show you how you can bypass this restriction programmatically.
+This demo will show you how you can bypass this restriction programmatically. SOAPAction from the source wsdl will not be modified.
 
 Here's the workaround... REST is enabled by default for Axis2 and you simply have change the content-type to anything \
 other than text/xml. Full ocumentation [on the Axis2 website](http://axis.apache.org/axis2/java/core/docs/rest-ws.html#rest_with_get).
@@ -72,3 +72,9 @@ then the message is treated as a RESTful Message, if not it is treated as a usua
 ```
 
 As some client libraies will not have full control on setting the content type, we will override the content-type when we detect that it's text/xml
+
+###Implementation
+This section will describe the steps to generate java code from the wsdl and host the servioes in an executable jar.
+
+1. Follow the [steps](#Generate java code from wsdl) above to generate java code from wsdl, you should see the following being generated:
+![Alt text](README_IMG/wsdl2java_output.PNG?raw=true "wsdl2java_output")
