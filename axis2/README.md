@@ -78,8 +78,9 @@ public class MultiReadHttpServletRequest extends HttpServletRequestWrapper {
 	
 	@Override
     public String getContentType() {
-    	if(org.apache.commons.lang.StringUtils.containsIgnoreCase(super.getContentType(), "xml")) {
-    		return "text/plain"; //this forces Axis2 to ignore the SOAPAction verification
+    	if(StringUtils.containsIgnoreCase(super.getContentType(), "xml")) {
+			//this forces Axis2 to ignore the SOAPAction verification
+    		return "text/plain"; 
     	}
         return super.getContentType();
     }
