@@ -74,18 +74,18 @@ then the message is treated as a RESTful Message, if not it is treated as a usua
 As some client libraies will not have full control on setting the content type, we will override the content-type when we detect that it's text/xml, see code snippet below:
 ```
 public class MultiReadHttpServletRequest extends HttpServletRequestWrapper {
-	//omitted non-relavant code
-	
-	@Override
-    public String getContentType() {
-    	if(StringUtils.containsIgnoreCase(super.getContentType(), "xml")) {
-			//this forces Axis2 to ignore the SOAPAction verification
-    		return "text/plain"; 
-    	}
-        return super.getContentType();
+  //omitted non-relavant code
+
+  @Override
+  public String getContentType() {
+    if(StringUtils.containsIgnoreCase(super.getContentType(), "xml")) {
+      //this forces Axis2 to ignore the SOAPAction verification
+      return "text/plain"; 
     }
-	
-	//omitted non-relavant code
+    return super.getContentType();
+  }
+
+  //omitted non-relavant code
 }
 ```
 
