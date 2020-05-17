@@ -6,10 +6,16 @@
  */
 package com.hurui.calculatorservice;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  *  CalculatorSkeleton java skeleton for the axisService
  */
 public class CalculatorSkeleton {
+	
+	private static final Logger logger = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
+	
     /**
      * Auto generated method signature
      *
@@ -18,9 +24,19 @@ public class CalculatorSkeleton {
      */
     public com.hurui.calculatorservice.MultiplyResponse multiply(
         com.hurui.calculatorservice.Multiply multiply) {
-        //TODO : fill this with the necessary business logic
-        throw new java.lang.UnsupportedOperationException("Please implement " +
-            this.getClass().getName() + "#multiply");
+    	MultiplyResponse resp = new MultiplyResponse();
+        try {     
+        	logger.info("Performing multiply operation...");
+        	logger.info("First Integer: {}", multiply.localIntA);
+        	logger.info("Second Integer: {}", multiply.localIntB);
+        	int value = multiply.localIntA * multiply.localIntB;
+        	logger.info("Value: {}", value);
+        	resp.setMultiplyResult(value);
+        }
+        catch(Exception ex) {
+        	ex.printStackTrace();
+        }
+        return resp;
     }
 
     /**
@@ -31,9 +47,19 @@ public class CalculatorSkeleton {
      */
     public com.hurui.calculatorservice.DivideResponse divide(
         com.hurui.calculatorservice.Divide divide) {
-        //TODO : fill this with the necessary business logic
-        throw new java.lang.UnsupportedOperationException("Please implement " +
-            this.getClass().getName() + "#divide");
+    	DivideResponse resp = new DivideResponse();
+        try {  
+        	logger.info("Performing divide operation...");
+        	logger.info("First Integer: {}", divide.localIntA);
+        	logger.info("Second Integer: {}", divide.localIntB);
+        	int value = divide.localIntA / divide.localIntB;
+        	logger.info("Value: {}", value);
+        	resp.setDivideResult(value);
+        }
+        catch(Exception ex) {
+        	ex.printStackTrace();
+        }
+        return resp;
     }
 
     /**
@@ -44,9 +70,19 @@ public class CalculatorSkeleton {
      */
     public com.hurui.calculatorservice.AddResponse add(
         com.hurui.calculatorservice.Add add) {
-        //TODO : fill this with the necessary business logic
-        throw new java.lang.UnsupportedOperationException("Please implement " +
-            this.getClass().getName() + "#add");
+    	AddResponse resp = new AddResponse();
+        try {        	
+        	logger.info("Performing add operation...");
+        	logger.info("First Integer: {}", add.localIntA);
+        	logger.info("Second Integer: {}", add.localIntB);
+        	int value = add.localIntA + add.localIntB;
+        	logger.info("Value: {}", value);
+        	resp.setAddResult(value);
+        }
+        catch(Exception ex) {
+        	ex.printStackTrace();
+        }
+        return resp;
     }
 
     /**
@@ -57,8 +93,18 @@ public class CalculatorSkeleton {
      */
     public com.hurui.calculatorservice.SubtractResponse subtract(
         com.hurui.calculatorservice.Subtract subtract) {
-        //TODO : fill this with the necessary business logic
-        throw new java.lang.UnsupportedOperationException("Please implement " +
-            this.getClass().getName() + "#subtract");
+    	SubtractResponse resp = new SubtractResponse();
+        try {    
+        	logger.info("Performing subtract operation...");
+        	logger.info("First Integer: {}", subtract.localIntA);
+        	logger.info("Second Integer: {}", subtract.localIntB);
+        	int value = subtract.localIntA - subtract.localIntB;
+        	logger.info("Value: {}", value);
+        	resp.setSubtractResult(value);
+        }
+        catch(Exception ex) {
+        	ex.printStackTrace();
+        }
+        return resp;
     }
 }

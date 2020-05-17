@@ -46,16 +46,28 @@ targetNamespace="http://calculator.hurui.com/">
 
 You can modify the following:
 ```
-xmlns:tns="http://calculator.hurui.com/"
-targetNamespace="http://calculator.hurui.com/
+xmlns:tns="http://CalculatorService.hurui.com/"
+targetNamespace="http://CalculatorService.hurui.com/
+```
+
+2. Schema
+
+Modify this:
+```
+<s:schema elementFormDefault="qualified" targetNamespace="http://CalculatorService.hurui.com/">
 ```
 
 
 The above setting will result in the packages generated to be:
 ```
-com.hurui.calculator
+com.hurui.calculatorservice
 ```
 
+#### Customizing URL Pattern
+Modify the following in the wsdl:\
+```
+<wsdl:service name="CalculatorService">
+```
 This demo will make use of the targetNamespace to customize package name but it actually has other uses.\
 You can read more about the purpose of targetNamespace at: https://www.w3.org/TR/REC-xml-names/
 
