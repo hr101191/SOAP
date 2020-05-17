@@ -71,7 +71,22 @@ When a message is received, if the content type is text/xml and if the SOAPActio
 then the message is treated as a RESTful Message, if not it is treated as a usual SOAP Message. 
 ```
 
-As some client libraies will not have full control on setting the content type, we will override the content-type when we detect that it's text/xml
+As some client libraies will not have full control on setting the content type, we will override the content-type when we detect that it's text/xml, see code snippet below:
+```
+public class MultiReadHttpServletRequest extends HttpServletRequestWrapper {
+	//omitted non-relavant code
+	
+	@Override
+    public String getContentType() {
+    	if(org.apache.commons.lang.StringUtils.containsIgnoreCase(super.getContentType(), "xml")) {
+    		return "text/plain"; //this forces Axis2 to ignore the SOAPAction verification
+    	}
+        return super.getContentType();
+    }
+	
+	//omitted non-relavant code
+}
+```
 
 ### Implementation
 This section will describe the steps to generate java code from the wsdl and host the servioes in an executable jar.
@@ -93,5 +108,7 @@ This section will describe the steps to generate java code from the wsdl and hos
  
  3. Copy everything in output/resources to your src/main/resource with the following structure:
 ![Alt text](README_IMG/service_xml_folder_structure.PNG?raw=true "service_xml_folder_structure")\
-The service.xml contains the classpaths which are called by Axis2 Servlet via reflection. Note that \
+The service.xml contains the classpaths which are called by Axis2 Servlet via reflection. Note that 
 this service.xml is unique for each wsdl. On startup, the service.xml will be loaded by Axis2 Servlet.
+
+4. Start coding!
