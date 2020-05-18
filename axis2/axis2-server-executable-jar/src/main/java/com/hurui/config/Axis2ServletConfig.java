@@ -11,11 +11,14 @@ import org.apache.axis2.transport.http.AxisServlet;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.FileSystemUtils;
+
+import com.hurui.servletfiler.Axis2ServletFilter;
 
 @Configuration
 public class Axis2ServletConfig {
@@ -68,6 +71,21 @@ public class Axis2ServletConfig {
 
         return axisServlet;
     }
+	
+	@Bean
+	public FilterRegistrationBean<Axis2ServletFilter> axis2FilterRegistrationBean(){
+		FilterRegistrationBean<Axis2ServletFilter> filterRegistrationBean = new FilterRegistrationBean<>();
+		filterRegistrationBean.setFilter(new Axis2ServletFilter());
+		/*
+		 * Only register the filter for Axis2 services
+		 * This is compatible with server prefix e.g. setting server.servlet.context-path=/api in application.properties
+		 * All routes with /api/services/* will also have this filter applied 
+		 * 
+		 * We do not want other routes to be applied with this filter e.g. actuator		
+		 */
+		filterRegistrationBean.addUrlPatterns("/services/*");
+		return filterRegistrationBean;
+	}
 
     @PreDestroy
     public void onDestroy() throws Exception {

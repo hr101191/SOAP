@@ -29,6 +29,11 @@
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>	
 		<!-- https://mvnrepository.com/artifact/org.apache.axis2/axis2-transport-http -->
 		<dependency>
 		    <groupId>org.apache.axis2</groupId>
@@ -48,6 +53,7 @@
 		    <version>${Axis2.version}</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.rampart/rampart-core -->
+		<!-- Axis2 runtime dependencies for security configurations and it's not used by this project. SSL can be configured via Spring Boot instead -->
 		<dependency>
 		    <groupId>org.apache.rampart</groupId>
 		    <artifactId>rampart-core</artifactId>
@@ -58,8 +64,9 @@
 		    <groupId>commons-lang</groupId>
 		    <artifactId>commons-lang</artifactId>
 		    <version>2.6</version>
-		</dependency>
+		</dependency>		
 		<!-- https://mvnrepository.com/artifact/joda-time/joda-time -->
+		<!-- No longer part of Spring Boot, used by Axis2 -->
 		<dependency>
 		    <groupId>joda-time</groupId>
 		    <artifactId>joda-time</artifactId>
