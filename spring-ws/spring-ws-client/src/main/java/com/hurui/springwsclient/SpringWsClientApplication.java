@@ -24,7 +24,11 @@ public class SpringWsClientApplication {
 
 	@EventListener
 	private void init(ApplicationStartedEvent event) {
-		client.Add();
+		try {
+			client.Add();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		}	
 	}
 	
 	@PreDestroy
