@@ -1,19 +1,6 @@
 package com.hurui.config;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.UnrecoverableKeyException;
-import java.security.cert.CertificateException;
-
-import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManagerFactory;
-
 import org.apache.http.client.HttpClient;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
@@ -79,7 +66,12 @@ public class WebServiceClientConfig {
 	    return HttpClientBuilder
 	    		.create()
 	    		.setSSLSocketFactory(sslConnectionSocketFactory())
-	    		.addInterceptorFirst(new HttpComponentsMessageSender.RemoveSoapHeadersInterceptor()) //To remove soapAction header from request
+	    		/**
+	    		 * HttpClient {@link org.apache.http.HttpRequestInterceptor} implementation that removes {@code Content-Length} and
+	    		 * {@code Transfer-Encoding} headers from the request. Necessary, because some SAAJ and other SOAP implementations set these
+	    		 * headers themselves, and HttpClient throws an exception if they have been set.
+	    		 */
+	    		.addInterceptorFirst(new HttpComponentsMessageSender.RemoveSoapHeadersInterceptor())
 	    		.build();
 	}
 
