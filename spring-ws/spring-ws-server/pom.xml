@@ -87,8 +87,7 @@
 							<!-- package name -->
 							<generatePackage>com.hurui.stub.calculatorservice</generatePackage>
 							<!-- generated classes output directory -->
-							<generateDirectory>${project.basedir}/src/main/java</generateDirectory>
-							<clearOutputDir>true</clearOutputDir>
+							<!-- <generateDirectory>${project.build.directory}/generated-sources/xjc</generateDirectory>-->
 						</configuration>
 					</execution>
 				</executions>
